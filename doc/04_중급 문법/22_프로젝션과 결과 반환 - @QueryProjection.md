@@ -1,0 +1,23 @@
+## 프로젝션과 결과 반환 - @QueryProjection
+- @QueryProjection
+  - 궁극의 방법이지만, 단점도 가지고 있다.
+- 생성자 + @QueryProjection
+  - 생성자 위에 저 애노테이션을 붙이고 compileQuerydsl 그래들 업뎃
+  - DTO도 Q파일로 생성이 된다.
+- Projection.construtor와 무슨 차이?
+  - 컴파일 오류를 못 잡는다. 런타임 오류가 발생
+  - 실제 유저가 코드를 실행하는 순간이 되서야 문제를 찾는다. 안좋은 런타임 오류...
+  - QueryDsl이 만든 생성자로는 컴파일 에러로 잡을 수 있다.
+- 단점
+  - Q파일을 생성해야 된다.
+    - @QueryProjection
+    - new 
+  - 아키텍처 문제 - 의존 관계 문제
+    - DTO는 기존에는 QueryDSL을 몰랐다.
+    - QueryDSL 임포트나 라이브러리 의존성이 없었는데
+    - DTO가 QueryDSL에 의존성을 갖게 된다.
+    - QueryDSL 라이브러리 빼면 빨간줄 발생
+    - 여러 레이어에 걸쳐서 DTO는 돌아다니는데, 아키텍처 설계 방향에 따라 다르긴 한데, 일반적으로 서비스, 컨트롤러 등 DTO가 흘러갈텐데, DTO 안에 쿼리 DSL에 의존적으로 설계 되어 있어 순수 DTO라 볼 수 없다.
+      - DTO는 깔끔하게 가져가자! 라는 방식을 사용하는데선 이 방식을 사용하기 애매하다.
+- distinct
+  - JPQL distinct와 같다.      

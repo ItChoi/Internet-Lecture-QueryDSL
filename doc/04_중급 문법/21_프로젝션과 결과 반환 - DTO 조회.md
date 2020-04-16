@@ -1,0 +1,16 @@
+## 프로젝션과 결과 반환 - DTO 조회
+- 실무에서 자주 쓰인다!
+- 순수 JPA에서 DTO 조회
+  - new study.querydsl.dto.MemberDto(m.username, m.age) 생성자 방식만 지원
+- Querydsl 빈 생성
+  - 프로퍼티 접근
+    - Projections.bean(MemberDto.class, member.username, member.age)
+  - 필드 직접 접근 
+    - 게터세터가 없어도 된다.
+    - select(Projections.fields(MemberDto.class,
+  - 생성자 사용
+    - .select(Projections.constructor(MemberDto.class, 
+    - 생성자 타입 순서와 일치해야한다.
+- 넣어야 하는 필드 이름이 다를 때는 as 이용하자!
+  - ExpressionUtils.as("adsa")로 감싸서 별칭을 줄 수도 있다.
+    - 자주 쓸 일은 없다.
