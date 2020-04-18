@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: local # local / dev / real 운영
+    active: test # local / dev / real 운영
   datasource:
     url: jdbc:h2:tcp://localhost/~/querydsl
     username: sa
